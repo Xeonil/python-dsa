@@ -54,46 +54,41 @@ class LinkedList:
             if current.value == target:
                 return current
             current = current.next_node
-        return None
     
-    def insert(self, value, target):
+    def insert(self, target, value):
         '''
         Insert value after target
         O(N)
         '''
         target_node = self.find(target)
-        if target_node is None:
-            return -1
-        
-        new_node = Node(value)
-        new_node.next_node = target_node.next_node
-        target_node.next_node = new_node
-        if self.tail == target_node:
-            self.tail = new_node   
-        self.len += 1
-        return
+        if target_node:
+            new_node = Node(value)
+            new_node.next_node = target_node.next_node
+            target_node.next_node = new_node
+            
+            if self.tail == target_node:
+                self.tail = new_node
+            self.len += 1
 
     def delete(self, target):
         '''
         Delete the first node with value
         O(N)
         '''
-        current_node = self.top.next_node
-        prev_node = self.top
-
-        while current_node is not None:
-            if current_node.value == target:
-                prev_node.next_node = current_node.next_node
+        current = self.top.next_node
+        prev = self.top
+        while current:
+            if current.value == target:
+                prev.next_node = current.next_node
                 self.len -= 1
-                if current_node == self.tail:
-                    if prev_node == self.top:
+                if current == self.tail:
+                    if prev == self.top:
                         self.tail = None
                     else:
-                        self.tail = prev_node
-                return
-            prev_node = current_node
-            current_node = current_node.next_node
-        return -1
+                        self.tail = prev
+                break
+            prev = current
+            current = current.next_node
 
     def __len__(self):
         '''
