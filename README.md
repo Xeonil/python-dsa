@@ -1,1 +1,6 @@
-# Implementation of some data structures in python
+# 🐍 python-dsa
+
+> **Data Structures & Algorithms in Python**  
+> Учебный проект для изучения и практики.
+
+_Создано с желанием разобраться в алгоритмах и структурах данных._
